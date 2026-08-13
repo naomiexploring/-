@@ -1,0 +1,14 @@
+services:
+  agent-chat:
+    build: .
+    container_name: agent-chat
+    ports:
+      - "3000:3000"
+    restart: always          # 崩溃/重启自动拉起，杜绝断链
+    volumes:
+      - kb-data:/app/knowledge-base   # 知识库持久化（上传/编辑不丢）
+      - db-data:/app/data             # 聊天记录(SQLite)持久化
+
+volumes:
+  kb-data:
+  db-data:
